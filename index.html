@@ -1,28 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Income and Expense Tracker</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
 <body>
-    <h1>Income and Expense Tracker</h1>
-    <div class="summary">
+    <div class="container">
+      <h1>💰 Income & Expense Tracker</h1>
+  
+      <div class="summary">
         <div id="income">Income: $0.00</div>
         <div id="expense">Expense: $0.00</div>
         <div id="balance">Balance: $0.00</div>
-    </div>
-    <div>
-        <input type="text" id="description" placeholder="Description">
-        <input type="number" id="amount" placeholder="Amount">
+      </div>
+  
+      <div class="input-group">
+        <input type="text" id="description" placeholder="💬 Description">
+        <input type="number" id="amount" placeholder="💵 Amount">
+        <select id="typeSelector">
+          <option value="income">➕ รายรับ</option>
+          <option value="expense">➖ รายจ่าย</option>
+        </select>
         <button id="addTransactionButton">Add Transaction</button>
+      </div>
+  
+      <ul id="transactionList"></ul>
     </div>
-    <div class="transaction-type">
-        <button id="incomeButton" class="type-button">Income</button>
-        <button id="expenseButton" class="type-button">Expense</button>
-    </div>
-    <ul id="transactionList"></ul>
+  
     <script src="script.js"></script>
-</body>
-</html>
+  </body>
+  

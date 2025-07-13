@@ -1,85 +1,142 @@
-body {
-  font-family: Arial, sans-serif;
+/* reset เบื้องต้น */
+* {
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #e0f7fa, #e0ffe0);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: start;
   padding: 20px;
-  background-color: #f4f4f4;
-  line-height: 1.6; /* เพิ่ม line-height เพื่อให้อ่านง่ายขึ้น */
+}
+
+.container {
+  width: 100%;
+  max-width: 500px;
+  background: white;
+  padding: 30px 25px;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
 h1 {
   text-align: center;
-  color: #333; /* เพิ่มสีข้อความ */
-  margin-bottom: 20px; /* เพิ่มระยะห่างด้านล่าง */
+  color: #2e7d32;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
 }
 
-.container {
-  max-width: 600px;
-  margin: auto;
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* เพิ่มความเข้มของเงา */
-  border: 1px solid #ddd; /* เพิ่มเส้นขอบบาง */
-}
-
-input[type="text"], input[type="number"] {
-  width: 100%;
-  padding: 12px; /* เพิ่ม padding */
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px; /* เพิ่มขนาดตัวอักษร */
-  box-sizing: border-box; /* ป้องกันการล้น */
-}
-
-input[type="text"]:focus, input[type="number"]:focus {
-  border-color: #28a745; /* เปลี่ยนสีขอบเมื่อโฟกัส */
-  outline: none; /* ลบเส้นขอบเดิม */
-}
-
-button {
-  width: 100%;
-  padding: 12px; /* เพิ่ม padding */
-  background-color: #28a745;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px; /* เพิ่มขนาดตัวอักษร */
-  transition: background-color 0.3s ease; /* เพิ่มเอฟเฟกต์การเปลี่ยนสี */
-}
-
-button:hover {
-  background-color: #218838;
-}
-
-button:active {
-  background-color: #1e7e34; /* เพิ่มสีเมื่อกดปุ่ม */
-}
-
-.transaction-type {
+.summary {
   display: flex;
   justify-content: space-between;
-  margin: 10px 0;
+  background-color: #f1f8e9;
+  padding: 15px;
+  border-radius: 8px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  border: 1px solid #c8e6c9;
+  color: #2e7d32;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 1rem;
 }
 
-.type-button {
-  flex: 1;
-  padding: 10px;
-  margin: 0 5px;
-  background-color: #007bff;
+.input-group input,
+.input-group select,
+.input-group button {
+  width: 100%;
+  padding: 14px;
+  margin: 8px 0;
+  border-radius: 8px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+  border-color: #66bb6a;
+  outline: none;
+}
+
+.input-group button {
+  background-color: #43a047;
   color: white;
   border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
   transition: background-color 0.3s ease;
 }
 
-.type-button:hover {
-  background-color: #0056b3;
+.input-group button:hover {
+  background-color: #388e3c;
 }
 
-.type-button.active {
-  background-color: #28a745; /* สีเขียวเมื่อเลือก */
+#transactionList {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+#transactionList li {
+  background: #f9f9f9;
+  border-left: 5px solid #66bb6a;
+  margin-bottom: 10px;
+  padding: 16px 12px;
+  border-radius: 8px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  word-break: break-word;
+}
+
+#transactionList li.expense {
+  border-left-color: #ef5350;
+}
+
+#transactionList button {
+  background: transparent;
+  border: none;
+  color: #ef5350;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 18px;
+  transition: color 0.3s;
+}
+
+#transactionList button:hover {
+  color: #c62828;
+}
+
+/* Responsive ปรับขนาดเมื่อจอแคบ */
+@media (max-width: 480px) {
+  .container {
+    padding: 20px 15px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .summary {
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 0.95rem;
+  }
+
+  .input-group input,
+  .input-group select,
+  .input-group button {
+    font-size: 1rem;
+    padding: 12px;
+  }
+
+  #transactionList li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
 }

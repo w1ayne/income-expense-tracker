@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
   loadTransactions();
+
+  const addTransactionButton = document.getElementById('addTransactionButton');
+  addTransactionButton.addEventListener('click', addTransaction);
 });
 
 function addTransaction() {
@@ -23,18 +26,29 @@ function addTransaction() {
 }
 
 function saveTransaction(transaction) {
-  const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
-  transactions.push(transaction);
-  localStorage.setItem('transactions', JSON.stringify(transactions));
+  try {
+      const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+      transactions.push(transaction);
+      localStorage.setItem('transactions', JSON.stringify(transactions));
+      console.log('Transaction saved:', transaction);
+  } catch (error) {
+      console.error('Error saving transaction:', error);
+  }
 }
 
 function loadTransactions() {
-  const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
-  const transactionList = document.getElementById('transactionList');
+  try {
+      const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+      const transactionList = document.getElementById('transactionList');
 
-  transactions.forEach(transaction => {
-      const li = document.createElement('li');
-      li.textContent = `${transaction.description}: $${transaction.amount}`;
-      transactionList.appendChild(li);
-  });
+      transactions.forEach(transaction => {
+          const li = document.createElement('li');
+          li.textContent = `${transaction.description}: $${transaction.amount}`;
+          transactionList.appendChild(li);
+      });
+
+      console.log('Transactions loaded:', transactions);
+  } catch (error) {
+      console.error('Error loading transactions:', error);
+  }
 }

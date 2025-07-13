@@ -1,54 +1,86 @@
-/* General Styles (applies to all devices) */
-body {
-    font-family: Arial, sans-serif;
+/* Reset Styles */
+* {
     margin: 0;
     padding: 0;
-    line-height: 1.6;
+    box-sizing: border-box;
   }
   
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
+  /* Body Styles */
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    color: #333;
+    line-height: 1.6;
     padding: 20px;
   }
   
-  /* Mobile Styles (default for small screens) */
+  /* Header Styles */
   header {
-    font-size: 1.2rem;
+    background: #ff6f61;
+    color: #fff;
+    padding: 20px;
     text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
   
+  header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  header p {
+    font-size: 1.2rem;
+  }
+  
+  /* Button Styles */
   button {
-    width: 100%;
-    padding: 10px;
+    background: #ff6f61;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
     font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
   }
   
-  /* Tablet Styles */
-  @media (min-width: 600px) {
-    header {
-      font-size: 1.5rem;
-    }
-  
-    button {
-      width: 50%;
-      font-size: 1.1rem;
-    }
+  button:hover {
+    background: #e55a4f;
   }
   
-  /* PC/Desktop Styles */
-  @media (min-width: 1024px) {
-    header {
-      font-size: 2rem;
-      text-align: left;
-    }
+  /* Card Styles */
+  .card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
   
-    button {
-      width: 30%;
-      font-size: 1.2rem;
-    }
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  }
   
-    .container {
-      padding: 40px;
-    }
+  .card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: #ff6f61;
+  }
+  
+  .card p {
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  /* Footer Styles */
+  footer {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+    background: #333;
+    color: #fff;
+    border-radius: 10px;
   }

@@ -9,6 +9,7 @@ function renderExpenses() {
   let total = 0;
 
   expenses.forEach((expense, index) => {
+    
     const row = document.createElement('tr');
     row.innerHTML = `
       <td>${expense.description}</td>

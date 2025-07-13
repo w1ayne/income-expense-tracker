@@ -1,52 +1,54 @@
+/* General Styles (applies to all devices) */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    line-height: 1.6;
   }
   
   .container {
-    max-width: 600px;
-    margin: 50px auto;
-    background: #fff;
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
   
-  h1, h2, h3 {
-    text-align: center;
-  }
-  
-  form {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  
-  form input, form select, form button {
-    padding: 10px;
-    font-size: 16px;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  table th, table td {
-    border: 1px solid #ddd;
-    padding: 10px;
+  /* Mobile Styles (default for small screens) */
+  header {
+    font-size: 1.2rem;
     text-align: center;
   }
   
   button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
   }
   
-  button:hover {
-    background-color: #0056b3;
+  /* Tablet Styles */
+  @media (min-width: 600px) {
+    header {
+      font-size: 1.5rem;
+    }
+  
+    button {
+      width: 50%;
+      font-size: 1.1rem;
+    }
+  }
+  
+  /* PC/Desktop Styles */
+  @media (min-width: 1024px) {
+    header {
+      font-size: 2rem;
+      text-align: left;
+    }
+  
+    button {
+      width: 30%;
+      font-size: 1.2rem;
+    }
+  
+    .container {
+      padding: 40px;
+    }
   }

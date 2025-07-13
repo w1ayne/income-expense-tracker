@@ -7,14 +7,18 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Income and Expense Tracker</h1>
+    <h1>Income and Expense Tracker</h1>
+    <div class="summary">
+        <div id="income">Income: $0.00</div>
+        <div id="expense">Expense: $0.00</div>
+        <div id="balance">Balance: $0.00</div>
+    </div>
+    <div>
         <input type="text" id="description" placeholder="Description">
         <input type="number" id="amount" placeholder="Amount">
-        <button onclick="addTransaction()">Add Transaction</button>
-        <h2>Transactions</h2>
-        <ul id="transactionList"></ul>
+        <button id="addTransactionButton">Add Transaction</button>
     </div>
+    <ul id="transactionList"></ul>
     <script src="script.js"></script>
 </body>
 </html>

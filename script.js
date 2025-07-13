@@ -72,3 +72,43 @@ function updateBalance() {
       console.error('Error updating balance:', error);
   }
 }
+let transactionType = 'income'; // ค่าเริ่มต้นเป็นรายรับ
+
+document.getElementById('incomeButton').addEventListener('click', () => {
+    transactionType = 'income';
+    setActiveButton('incomeButton');
+});
+
+document.getElementById('expenseButton').addEventListener('click', () => {
+    transactionType = 'expense';
+    setActiveButton('expenseButton');
+});
+
+function setActiveButton(activeButtonId) {
+    document.getElementById('incomeButton').classList.remove('active');
+    document.getElementById('expenseButton').classList.remove('active');
+    document.getElementById(activeButtonId).classList.add('active');
+}
+
+function addTransaction() {
+    const description = document.getElementById('description').value;
+    const amount = parseFloat(document.getElementById('amount').value);
+    const transactionList = document.getElementById('transactionList');
+
+    if (description && !isNaN(amount)) {
+        const signedAmount = transactionType === 'income' ? amount : -amount; // กำหนดเครื่องหมายตามประเภท
+        const transaction = { description, amount: signedAmount };
+        saveTransaction(transaction);
+
+        const li = document.createElement('li');
+        li.textContent = `${transaction.description}: ${signedAmount >= 0 ? '+' : ''}$${signedAmount}`;
+        transactionList.appendChild(li);
+
+        updateBalance();
+
+        document.getElementById('description').value = '';
+        document.getElementById('amount').value = '';
+    } else {
+        alert('Please enter both description and a valid amount.');
+    }
+}

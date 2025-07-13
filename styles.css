@@ -56,3 +56,30 @@ button:hover {
 button:active {
   background-color: #1e7e34; /* เพิ่มสีเมื่อกดปุ่ม */
 }
+
+.transaction-type {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.type-button {
+  flex: 1;
+  padding: 10px;
+  margin: 0 5px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.type-button:hover {
+  background-color: #0056b3;
+}
+
+.type-button.active {
+  background-color: #28a745; /* สีเขียวเมื่อเลือก */
+}

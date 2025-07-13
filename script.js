@@ -1,49 +1,40 @@
-const form = document.getElementById('expense-form');
-const tableBody = document.querySelector('#expense-table tbody');
-const totalDisplay = document.getElementById('total');
+document.addEventListener('DOMContentLoaded', () => {
+  loadTransactions();
+});
 
-let expenses = JSON.parse(localStorage.getItem('expenses')) || [];
-
-function renderExpenses() {
-  tableBody.innerHTML = '';
-  let total = 0;
-
-  expenses.forEach((expense, index) => {
-    
-    const row = document.createElement('tr');
-    row.innerHTML = `
-      <td>${expense.description}</td>
-      <td>${expense.amount}</td>
-      <td>${expense.type === 'income' ? 'รายรับ' : 'รายจ่าย'}</td>
-      <td><button onclick="deleteExpense(${index})">ลบ</button></td>
-    `;
-    tableBody.appendChild(row);
-
-    total += expense.type === 'income' ? expense.amount : -expense.amount;
-  });
-
-  totalDisplay.textContent = `ยอดรวม: ${total}`;
-}
-
-function addExpense(event) {
-  event.preventDefault();
-
+function addTransaction() {
   const description = document.getElementById('description').value;
-  const amount = parseFloat(document.getElementById('amount').value);
-  const type = document.getElementById('type').value;
+  const amount = document.getElementById('amount').value;
+  const transactionList = document.getElementById('transactionList');
 
-  expenses.push({ description, amount, type });
-  localStorage.setItem('expenses', JSON.stringify(expenses));
+  if (description && amount) {
+      const transaction = { description, amount: parseFloat(amount) };
+      saveTransaction(transaction);
 
-  form.reset();
-  renderExpenses();
+      const li = document.createElement('li');
+      li.textContent = `${transaction.description}: $${transaction.amount}`;
+      transactionList.appendChild(li);
+
+      document.getElementById('description').value = '';
+      document.getElementById('amount').value = '';
+  } else {
+      alert('Please enter both description and amount.');
+  }
 }
 
-function deleteExpense(index) {
-  expenses.splice(index, 1);
-  localStorage.setItem('expenses', JSON.stringify(expenses));
-  renderExpenses();
+function saveTransaction(transaction) {
+  const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+  transactions.push(transaction);
+  localStorage.setItem('transactions', JSON.stringify(transactions));
 }
 
-form.addEventListener('submit', addExpense);
-renderExpenses();
+function loadTransactions() {
+  const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+  const transactionList = document.getElementById('transactionList');
+
+  transactions.forEach(transaction => {
+      const li = document.createElement('li');
+      li.textContent = `${transaction.description}: $${transaction.amount}`;
+      transactionList.appendChild(li);
+  });
+}

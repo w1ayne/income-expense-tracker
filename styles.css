@@ -3,35 +3,56 @@ body {
   margin: 0;
   padding: 20px;
   background-color: #f4f4f4;
+  line-height: 1.6; /* เพิ่ม line-height เพื่อให้อ่านง่ายขึ้น */
 }
+
 h1 {
   text-align: center;
+  color: #333; /* เพิ่มสีข้อความ */
+  margin-bottom: 20px; /* เพิ่มระยะห่างด้านล่าง */
 }
+
 .container {
   max-width: 600px;
   margin: auto;
   background: white;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* เพิ่มความเข้มของเงา */
+  border: 1px solid #ddd; /* เพิ่มเส้นขอบบาง */
 }
+
 input[type="text"], input[type="number"] {
   width: 100%;
-  padding: 10px;
+  padding: 12px; /* เพิ่ม padding */
   margin: 10px 0;
   border: 1px solid #ccc;
   border-radius: 4px;
+  font-size: 16px; /* เพิ่มขนาดตัวอักษร */
+  box-sizing: border-box; /* ป้องกันการล้น */
 }
+
+input[type="text"]:focus, input[type="number"]:focus {
+  border-color: #28a745; /* เปลี่ยนสีขอบเมื่อโฟกัส */
+  outline: none; /* ลบเส้นขอบเดิม */
+}
+
 button {
   width: 100%;
-  padding: 10px;
+  padding: 12px; /* เพิ่ม padding */
   background-color: #28a745;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-size: 16px; /* เพิ่มขนาดตัวอักษร */
+  transition: background-color 0.3s ease; /* เพิ่มเอฟเฟกต์การเปลี่ยนสี */
 }
+
 button:hover {
   background-color: #218838;
 }
 
+button:active {
+  background-color: #1e7e34; /* เพิ่มสีเมื่อกดปุ่ม */
+}

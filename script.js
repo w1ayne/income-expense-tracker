@@ -2,7 +2,9 @@ document.addEventListener('DOMContentLoaded', () => {
     loadTransactions();
     document.getElementById('addTransactionButton').addEventListener('click', addTransaction);
   });
+
   
+
   function generateId() {
     return Date.now(); // ใช้ timestamp เป็น id
   }
@@ -51,8 +53,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const li = document.createElement('li');
     li.classList.add(transaction.amount < 0 ? 'expense' : 'income');
   
+    const sign = transaction.amount >= 0 ? '+' : '-';
     li.innerHTML = `
-      ${transaction.description}: ${transaction.amount >= 0 ? '+' : ''}$${Math.abs(transaction.amount)}
+      ${transaction.description}: ${sign}${formatCurrency(Math.abs(transaction.amount))}
       <button onclick="deleteTransaction(${transaction.id})">🗑️</button>
     `;
     document.getElementById('transactionList').appendChild(li);
@@ -77,8 +80,18 @@ document.addEventListener('DOMContentLoaded', () => {
         .reduce((sum, t) => sum + t.amount, 0);
     const balance = income + expense;
   
-    document.getElementById('income').textContent = `Income: $${income.toFixed(2)}`;
-    document.getElementById('expense').textContent = `Expense: $${Math.abs(expense).toFixed(2)}`;
-    document.getElementById('balance').textContent = `Balance: $${balance.toFixed(2)}`;
+    document.getElementById('income').textContent = `รายรับ: ${formatCurrency(income)}`;
+    document.getElementById('expense').textContent = `รายจ่าย: ${formatCurrency(Math.abs(expense))}`;
+    document.getElementById('balance').textContent = `ยอดคงเหลือ: ${formatCurrency(balance)}`;
   }
+  
+
+  function formatCurrency(number) {
+    return number.toLocaleString('th-TH', {
+      style: 'currency',
+      currency: 'THB'
+    });
+  }
+  
+  
   

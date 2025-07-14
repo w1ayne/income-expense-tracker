@@ -92,6 +92,37 @@ document.addEventListener('DOMContentLoaded', () => {
       currency: 'THB'
     });
   }
-  
+  document.getElementById('exportButton').addEventListener('click', exportCSV);
+
+  function exportCSV() {
+  const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+
+  if (transactions.length === 0) {
+    alert('ยังไม่มีข้อมูลให้ส่งออก');
+    return;
+  }
+
+  const csvHeader = ['ID', 'รายการ', 'จำนวนเงิน (บาท)'];
+  const csvRows = transactions.map(t => [
+    t.id,
+    `"${t.description.replace(/"/g, '""')}"`, // handle quotes
+    t.amount
+  ]);
+
+  const csvContent = [csvHeader, ...csvRows]
+    .map(e => e.join(','))
+    .join('\n');
+
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = `transactions_${new Date().toISOString().slice(0, 10)}.csv`;
+  link.click();
+
+  URL.revokeObjectURL(url);
+}
+
   
   
